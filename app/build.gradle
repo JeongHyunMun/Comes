@@ -1,16 +1,17 @@
 plugins {
     id 'com.android.application'
     id 'org.jetbrains.kotlin.android'
+    id 'kotlin-kapt'
 }
 
 android {
     namespace 'com.example.comes'
-    compileSdk 33
+    compileSdk 34
 
     defaultConfig {
         applicationId "com.example.comes"
-        minSdk 24
-        targetSdk 33
+        minSdk 21
+        targetSdk 34
         versionCode 1
         versionName "1.0"
 
@@ -20,9 +21,27 @@ android {
     buildTypes {
         release {
             minifyEnabled false
+            debuggable false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            buildConfigField "String", "BASE_URL", "\"https://localhost:8080/appserver/\""
+            buildConfigField "String", "BASE_ERROR_URL", "\"localhost:8080\""
+        }
+        develop {
+            applicationIdSuffix ".dev"
+            debuggable true
+            buildConfigField "String", "BASE_URL", "\"https://localhost:8080/appserver/\""
+            buildConfigField "String", "BASE_ERROR_URL", "\"https://localhost:8080\""
         }
     }
+
+    dataBinding {
+        enabled = true
+    }
+
+    buildFeatures {
+        dataBinding = true
+    }
+
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
@@ -34,12 +53,25 @@ android {
 
 dependencies {
 
-    implementation 'androidx.core:core-ktx:1.7.0'
-    implementation 'androidx.appcompat:appcompat:1.7.0'
+    implementation 'androidx.core:core-ktx:1.8.0'
+    implementation 'androidx.appcompat:appcompat:1.1.0-alpha01'
+    implementation 'androidx.constraintlayout:constraintlayout:2.0.0-alpha3'
     implementation 'com.google.android.material:material:1.12.0'
     implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
     implementation 'androidx.databinding:databinding-runtime:7.1.2'
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.2.1'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.6.1'
+
+    implementation 'io.reactivex.rxjava3:rxjava:3.0.0' // RxJava3
+    implementation 'io.reactivex.rxjava3:rxandroid:3.0.0' // RxAndroid (UI 스레드 작업을 위한 선택 사항)
+
+    // picasso
+    implementation "com.squareup.picasso:picasso:2.5.2"
+
+    // retrofit
+    implementation "com.squareup.retrofit2:retrofit:2.11.0"
+    implementation "com.squareup.retrofit2:converter-gson:2.11.0"
+    implementation "com.squareup.retrofit2:adapter-rxjava3:2.9.0"
+    implementation "com.squareup.retrofit2:retrofit-mock:2.11.0"
 }
