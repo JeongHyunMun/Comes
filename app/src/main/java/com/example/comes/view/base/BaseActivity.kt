@@ -1,7 +1,9 @@
 package com.example.comes.view.base
 
 import android.content.Context
+import android.os.Build
 import android.os.Bundle
+import android.text.TextUtils
 import androidx.databinding.ViewDataBinding
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
@@ -9,6 +11,8 @@ import androidx.lifecycle.ViewModelProvider
 import com.example.comes.custom.LoadingProgressDialog
 import com.example.comes.network.model.BaseViewModel
 import com.example.comes.ComesApp.Companion.instance
+import com.example.comes.common.DEFINE
+import java.util.*
 
 /**
  * author : hyeonmun

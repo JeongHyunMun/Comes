@@ -16,7 +16,7 @@ interface ApiService {
     // 로그인
     @FormUrlEncoded
     @POST("login")
-    fun reqLogin(@FieldMap map: HashMap<String?, Any?>?): Call<LoginResponse?>?
+    fun reqLogin(@FieldMap map: java.util.HashMap<String, Any>): Call<LoginResponse?>?
 
     // 최초 비밀번호 변경
     @FormUrlEncoded
