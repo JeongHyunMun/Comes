@@ -1,10 +1,8 @@
 package com.example.comes.network.model
 
-import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
 import com.example.comes.network.model.request.LoginRequest
 import com.example.comes.network.model.response.LoginResponse
-import com.example.comes.repository.DataRepository
 import io.reactivex.rxjava3.disposables.CompositeDisposable
 import io.reactivex.rxjava3.disposables.Disposable
 import retrofit2.Call
@@ -21,7 +19,7 @@ open class BaseViewModel : ViewModel(){
         super.onCleared()
     }
 
-    fun reqLogin(model: LoginRequest?): Call<LoginResponse?>? {
-        return DataRepository.instance?.reqLogin(model)
-    }
+//    fun reqLogin(model: LoginRequest?): Call<LoginResponse?>? {
+//        return DataRepository.instance?.reqLogin(model)
+//    }
 }
